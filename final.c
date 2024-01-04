@@ -154,8 +154,8 @@ void import_file(FILE *fp_in, unsigned int *freq){
 
 void encode(FILE* fp_in, unsigned int *freq ){
 
-	char in,c,temp[20] = {0};
-	int i,j=0,k=0,lim=0;
+	char in,temp[20] = {0};
+	int i,j=0,lim=0;
 	rewind(fp_in);
 	for(i=0; i<128; i++){
 		if(freq[i])	lim += (freq[i]*strlen(code[i]));
@@ -169,14 +169,6 @@ void encode(FILE* fp_in, unsigned int *freq ){
 			printf("%s",code[in]);
 			j = 0;
 		}
-		if(temp[j] == '1')
-                        c = c|(1<<(7-k));       //shifts 1 to relevant position and OR with the temporary char
-                else if(temp[j] == '0')
-                        c = c|(0<<(7-k));       //shifts 0 to relevant position and OR with the temporary char
-                else
-                        printf("ERROR: Wrong input!\n");
-                k++;                            // k is used to divide the string into 8 bit chunks and save
-		j++;
 		
 	}
 }
